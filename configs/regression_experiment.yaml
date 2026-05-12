@@ -1,0 +1,28 @@
+# Regression Online Learning Experiment Configuration
+experiment:
+  name: "regression_online_learning"
+  task_type: "regression"
+  batch_size: 20
+  random_state: 42
+
+data:
+  n_samples: 2000
+  n_features: 6
+  noise: 0.15
+  test_size: 0.2
+
+models:
+  - name: "SGD_Regressor"
+    class: "OnlineSGDRegressor"
+    params:
+      loss: "squared_error"
+      learning_rate: "optimal"
+      eta0: 0.01
+      random_state: 42
+
+evaluation:
+  metrics: ["mse", "rmse", "mae", "r2"]
+  save_results: true
+  save_plots: true
+  plot_path: "assets/plots/"
+  results_path: "assets/results/"

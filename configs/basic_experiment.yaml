@@ -1,0 +1,47 @@
+# Basic Online Learning Experiment Configuration
+experiment:
+  name: "basic_online_learning"
+  task_type: "classification"
+  batch_size: 10
+  random_state: 42
+
+data:
+  n_samples: 1000
+  n_features: 4
+  n_classes: 3
+  noise: 0.1
+  test_size: 0.2
+
+models:
+  - name: "SGD_Classifier"
+    class: "OnlineSGDClassifier"
+    params:
+      loss: "log"
+      learning_rate: "optimal"
+      random_state: 42
+  
+  - name: "Perceptron"
+    class: "OnlinePerceptron"
+    params:
+      eta0: 1.0
+      random_state: 42
+      
+  - name: "Passive_Aggressive"
+    class: "OnlinePassiveAggressive"
+    params:
+      C: 1.0
+      random_state: 42
+      
+  - name: "Adaptive_Learner"
+    class: "AdaptiveOnlineLearner"
+    params:
+      learning_rate: 0.01
+      decay_rate: 0.95
+      random_state: 42
+
+evaluation:
+  metrics: ["accuracy", "precision", "recall", "f1_score"]
+  save_results: true
+  save_plots: true
+  plot_path: "assets/plots/"
+  results_path: "assets/results/"
